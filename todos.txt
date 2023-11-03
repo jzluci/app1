@@ -1,0 +1,6 @@
+clean
+sweep
+dust
+clean
+sweep
+dust
