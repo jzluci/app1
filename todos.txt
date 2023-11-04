@@ -1,6 +1,4 @@
-clean
-sweep
-dust
-clean
-sweep
-dust
+fix the plates
+clean your room
+sweep the floor
+call your mom

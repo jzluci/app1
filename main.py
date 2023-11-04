@@ -2,38 +2,60 @@ while True:
     userChoice = input("Type add, show, edit, complete, or exit: ")
     userChoice = userChoice.strip()
 
+
     def printList():
-        file = open('todos.txt', 'r')
-        todos = file.readlines()
-        file.close()
+        with open('todos.txt', 'r') as file:
+            todos = file.readlines()
+
         for i, item in enumerate(todos, start=1):
+            item = item.strip('\n')
             print(f"{i}. {item}")
 
-    match userChoice:
-        case 'add':
-            todo = input("Enter Todo: ") + "\n"
 
-            file = open('todos.txt', 'r')
+    if 'add' in userChoice:
+        todo = userChoice[4:]
+
+        with open('todos.txt', 'r') as file:
             todos = file.readlines()
-            file.close()
 
-            todos.append(todo)
+        todos.append(todo +'\n')
 
-            file = open('todos.txt', 'w')
+        with open('todos.txt', 'w') as file:
             file.writelines(todos)
-            file.close()
-        case "show":
-            printList()
-        case "edit":
-            printList()
-            choice = int(input("Select number of To Do to edit: ")) - 1
-            update = input("Enter new To Do: ")
-            todos[choice] = update
-        case "complete":
-            printList()
-            choice = int(input("Select number of To Do to complete: ")) - 1
-            todos.pop(choice)
-        case 'exit':
-            break
+
+    elif "show" in userChoice:
+        printList()
+    elif "edit" in userChoice:
+        printList()
+        choice = int(userChoice[5:]) - 1
+
+        with open('todos.txt', 'r') as file:
+            todos = file.readlines()
+
+        update = input("Enter new To Do: ")
+
+        todos[choice] = update + '\n'
+
+        with open('todos.txt', 'w') as file:
+            file.writelines(todos)
+    elif "complete" in userChoice:
+        printList()
+        choice = int(userChoice[9:]) - 1
+
+        with open('todos.txt', 'r') as file:
+            todos = file.readlines()
+
+        todoToRemove = todos[choice].strip('\n')
+        todos.pop(choice)
+
+        with open('todos.txt', 'w') as file:
+            file.writelines(todos)
+
+        message = f"Todo item - '{todoToRemove}' was removed from the list."
+        print(message)
+    elif 'exit' in userChoice:
+        break
+    else:
+        print("Unrecognized input, please try again")
 
 print("Bye!")
