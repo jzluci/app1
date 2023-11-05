@@ -1,26 +1,10 @@
-def printlist():
-    with open('todos.txt', 'r') as file:
-        todos = file.readlines()
+from functions import *
+import time
 
-    print("Current list: ")
-    for i, item in enumerate(todos, start=1):
-        item = item.strip('\n')
-        print(f"{i}. {item}")
-
-
-def get_todos():
-    with open('todos.txt', 'r') as file:
-        todos = file.readlines()
-    return todos
-
-
-def set_todos():
-    with open('todos.txt', 'w') as file:
-        file.writelines(todos)
-
+datetime = time.strftime("%b %d, %Y %H:%M:%S")
+print(datetime)
 
 while True:
-
 
     userChoice = input("Type add, show, edit, complete, or exit: ")
     userChoice = userChoice.strip()
@@ -32,8 +16,7 @@ while True:
 
         todos.append(todo + '\n')
 
-        with open('todos.txt', 'w') as file:
-            file.writelines(todos)
+        set_todos('todos.txt', todos)
 
     elif userChoice.startswith("show"):
         printlist()
@@ -47,8 +30,8 @@ while True:
 
             todos[choice] = update + '\n'
 
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+            set_todos('todos.txt', todos)
+
         except ValueError:
             print("Unrecognized input. Try again")
             continue
@@ -62,8 +45,7 @@ while True:
             todoToRemove = todos[choice].strip('\n')
             todos.pop(choice)
 
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+            set_todos('todos.txt', todos)
 
             message = f"Todo item - '{todoToRemove}' was removed from the list."
             print(message)
