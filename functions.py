@@ -17,8 +17,8 @@ def get_todos(filepath = FILEPATH):
     return todos_local
 
 
-def set_todos(filepath, todos_arg):
-    with (open(filepath, 'w') as file_local):
+def set_todos(todos_arg, filepath = FILEPATH):
+    with (open(FILEPATH, 'w') as file_local):
         file_local.writelines(todos_arg)
 
 
