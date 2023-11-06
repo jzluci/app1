@@ -1,6 +1,3 @@
 fix the plates
-clean your room
-sweep the floor
-buy a camera
-mop the floor
-Listen
+maximizeListen
+weee
