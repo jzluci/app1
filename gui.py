@@ -23,6 +23,7 @@ while True:
             todos = functions.get_todos()
             todos.append(values['todo'] + '\n')
             functions.set_todos(todos)
+            window['items'].update(values=todos)
         case "Edit":
             todo_to_edit = values['items'][0]
             new_todo = values['todo']
@@ -32,6 +33,8 @@ while True:
             todos[index] = new_todo
             functions.set_todos(todos)
             window['items'].update(values=todos)
+        case "items":
+            window['todo'].update(value=values['items'][0])
         case psg.WIN_CLOSED:
             break
 
