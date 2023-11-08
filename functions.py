@@ -11,12 +11,14 @@ def printlist():
         print(f"{i}. {item}")
 
 
+#reads todos from txt file
 def get_todos(filepath = FILEPATH):
     with open(filepath, 'r') as file_local:
         todos_local = file_local.readlines()
     return todos_local
 
 
+#writes todos to txt file
 def set_todos(todos_arg, filepath = FILEPATH):
     with (open(FILEPATH, 'w') as file_local):
         file_local.writelines(todos_arg)
